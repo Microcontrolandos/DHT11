@@ -1,12 +1,12 @@
 # DHT11
 Humidity e Temperature Sensor
 
-> O DHT11 é um sensor de temperatura e umidade que permite fazer leituras de temperaturas entre 0 a 50 Celsius e umidade entre 20 a 90%.
+> O DHT11 é um sensor de temperatura e umidade que permite fazer leituras de temperaturas entre 0°C a 50°C e umidade entre 20 a 90%.
 
 >
-* Faixa de medição de umidade: 20 a 90% UR
-* Faixa de medição de temperatura: 0° a 50°C
-* Alimentação: 3V - 5V
+* Faixa de medição de umidade: 20% a 90% UR
+* Faixa de medição de temperatura: 0°C a 50°C
+* Alimentação: 3V - 5.5V
 * Corrente: 200uA a 500mA, em stand by de 100uA a 150 uA
 * Precisão de umidade de medição: ± 5,0% UR
 * Precisão de medição de temperatura: ± 2.0 °C
@@ -36,7 +36,7 @@ sbit DHT11_Data at RB6_bit;
 sbit DHT11_Data_Direction at TRISB6_bit;
 
 /* Variáveis */
-char umidade[2], temperatura[2];
+char umidade[2], temperatura[2]; //MSB - parte decimal, LSB - parte inteira
 char texto[6]; // 000°C ou 000%
 
 void main()
@@ -48,7 +48,7 @@ void main()
       
       while( 1 )
       {
-        // Realiza a leitura da umidade e temperatura
+        // Recupera os valores da umidade e da temperatura
         if( DHT11_Read( &umidade, &temperatura ) == DHT11_OK )
         {
           Lcd_Out( 1, 1, "UMIDADE: " );
