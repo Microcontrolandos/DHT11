@@ -10,11 +10,12 @@
 static char DHT11_Get_Byte()
 {
 char i, byte = 0;
-unsigned timeOut = 0xFFFF;
+unsigned timeOut;
 
     for( i = 0b10000000; i; i = i >> 1 )
     {
-        while( !DHT11_Data )
+        timeOut = 0xFFFF;
+		while( !DHT11_Data )
             if( !--timeOut ) return 0;
 
         Delay_us( 40 );
